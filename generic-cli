@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Licence: https://github.com/riera90/generic-CLI/blob/master/LICENSE.md
+
 create_cmake(){
 	printf "WIP: the generic-cmake is not done yet, please wait.\n"
 }
