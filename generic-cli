@@ -83,7 +83,7 @@ update_cli(){
 	git clone https://github.com/riera90/generic-cli.git
 	mv ./generic-CLI/generic-gli ./generic-cli
 	rm -rf generic-CLI
-	sudo mv ./generic-cli /bin/generic-cli
+	sudo mv -f ./generic-cli /bin/generic-cli
 }
 
 create(){
