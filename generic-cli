@@ -83,9 +83,9 @@ update_cli(){
 	git clone https://github.com/riera90/generic-cli.git
 	mv ./generic-cli/generic-cli ./generic-cli.sh
 	rm -rf ./generic-cli
-	echo "rm /bin/generic-cli && mv ./generic-cli.sh /bin/generic-cli && rm ./tmp.sh" > ./tmp.sh
-	sudo chmod +x ./tmp.sh
-	sudo ./tmp.sh
+	echo "rm /usr/bin/generic-cli && mv ./generic-cli.sh /usr/bin/generic-cli && chmod +x /usr/bin/generic-cli && rm /tmp/tmp.sh" > /tmp/tmp.sh
+	sudo chmod +x /tmp/tmp.sh
+	sudo /tmp/tmp.sh
 }
 
 create(){
