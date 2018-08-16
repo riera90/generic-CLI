@@ -1,0 +1,199 @@
+#!/bin/sh
+
+create_cmake(){
+	printf "WIP: the generic-cmake is not done yet, please wait.\n"
+}
+
+delete_cmake(){
+	printf "WIP: the generic-cmake is not done yet, please wait.\n"
+}
+
+update_cmake(){
+	printf "WIP: the generic-cmake is not done yet, please wait.\n"
+}
+
+
+recreate_makefile(){
+	printf "do you want googletest?\n"
+	read -p "    [Y/N]: " answer
+	case $answer in
+		[yY]*)
+			git clone https://github.com/google/googletest.git
+			rm -rf ./googletest/.git
+			mv ./googletest ./make-files/googletest
+			;;
+		*)
+			;;
+	esac
+
+}
+
+create_makefile(){
+	if [ -d make-files ]; then
+		printf "re-creating makefile.\n"
+		recreate_makefile
+	else
+		printf "creating makefile.\n"
+		git clone https://github.com/riera90/generic-makefile.git
+		mv ./generic-makefile/*.md ./generic-makefile/make-files/
+		rm -rf ./generic-makefile/.git ./generic-makefile/example ./generic-makefile/gtests
+		if [ -f ./../.gitignore ]; then
+			cat ./generic-makefile/.gitignore >> ./.gitignore
+			rm ./generic-makefile/gitignore
+		else
+			mv ./generic-makefile/.gitignore ./.gitignore
+		fi
+		mv ./generic-makefile/* ./
+		rm -rf ./generic-makefile
+		recreate_makefile
+	fi
+}
+
+delete_makefile(){
+	rm -rf Makefile make-files
+}
+
+update_makefile(){
+	git clone https://github.com/riera90/generic-makefile.git
+	mv ./generic-makefile/make-files/Makefile ./make-files/Makefile
+	printf "do you want to update the configuration file?\nthe previous configuration will be stored in Makefile.old\n"
+	read -p "    [Y/N]: " answer
+	case $answer in
+		[yY]*)
+			if [ -f Makefile.old ]; then
+				rm Makefile.old
+			fi
+			mv ./Makefile ./Makefile.old
+			mv ./generic-makefile/Makefile ./Makefile
+			rm -rf generic-makefile
+			if [ -d make-files/googletest ]; then
+				rm -rf ./make-files/googletest
+				git clone https://github.com/google/googletest.git
+				rm -rf ./googletest/.git
+				mv ./googletest ./make-files/googletest
+			fi
+			;;
+		*)
+			;;
+	esac
+}
+
+update_cli(){
+	printf "updating cli.\n"
+	git clone https://github.com/riera90/generic-cli.git
+	mv ./generic-CLI/generic-gli ./generic-cli
+	rm -rf generic-CLI
+	sudo mv ./generic-cli /bin/generic-cli
+}
+
+create(){
+	case $OPTARG in
+		make)
+			create_makefile
+			;;
+		makefile)
+			create_makefile
+			;;
+		gmf)
+			create_makefile
+			;;
+		cmake)
+			create_cmake
+			;;
+		gcm)
+			create_cmake
+			;;
+		*)
+			printf "Invalid argument: $OPTARG\nplease, use one of the followings\n"
+			printf "   for the generic-makefile: 'makefile', 'make' or 'gmf'.\n"
+			printf "   for the generic-cmake: 'cmake' or 'gcm'.\n"
+			;;
+	esac
+}
+
+update(){
+	if [ -f Makefile ]; then
+		update_makefile
+	fi
+	if [ -f cmake ]; then
+		update_cmake
+	fi
+	update_cli
+}
+
+delete(){
+	if [ -f Makefile ]; then
+		printf "Are you sure you want to delete the generic-makefile and it's configuration?\n"
+		read -p "    [Y/N]: " answer
+		case $answer in
+			[yY]*)
+				printf "DELETING GENERIC-MAKEFILE!\n"
+				delete_makefile
+				;;
+			*)
+				printf "Doing nothing.\n"
+				;;
+		esac
+
+	elif [ -f cmake ]; then
+		printf "Are you sure you want to delete the generic-cmake and it's configuration?\n"
+		read -p "    [Y/N]: " answer
+		case $answer in
+			[yY]*)
+				printf "DELETING GENERIC-CMAKE!\n"
+				delete_cmake
+				;;
+			*)
+				printf "Doing nothing.\n"
+				;;
+		esac
+	else
+		printf "You are not in a project with a generic family builder.\n"
+	fi
+}
+
+help(){
+	printf "generic-CLI for GNU/Linux\n"
+	printf "   usage:\n"
+	printf "   -c <cmake/makefile>\n        Creates a generic cmake or makefile in the current directory\n"
+	printf "   -d   Delete the makefile or cmake of the current directory\n"
+	printf "   -u   Updates this scripts and the current directory's makefile or cmake\n        (if there is one)\n"
+}
+
+while getopts ":c:hud" opt; do
+	case $opt in
+		h)
+			help
+			exit 0;
+			;;
+
+		c)
+			create
+			exit 0;
+			;;
+
+		u)
+			update
+			exit 0;
+			;;
+
+		d)
+			delete
+			exit 0;
+			;;
+
+		\?)
+			printf "Invalid option: -$OPTARG\n"
+			printf "use -h to get help.\n"
+			exit 1
+			;;
+
+		:)
+			printf "Option -$OPTARG requires an argument.\n"
+			printf "use -h to get help.\n"
+			exit 1
+			;;
+	esac
+done
+
+help
