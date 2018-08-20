@@ -166,7 +166,7 @@ help(){
 	printf "   -u   Updates this scripts and the current directory's makefile or cmake\n        (if there is one)\n"
 }
 
-cat ~/gcli/gcli_banner.txt
+cat ~/.gcli/gcli_banner.txt
 
 while getopts ":c:hud" opt; do
 	case $opt in
