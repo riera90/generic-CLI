@@ -85,6 +85,9 @@ update_cli(){
 	git clone https://github.com/riera90/generic-cli.git
 	mv ./generic-cli/generic-cli ./generic-cli.sh
 	rm -rf ./generic-cli
+	rm ~/gcli/gcli_banner.txt
+	mkdir ~/gcli
+	mv ./gcli_banner ~/gcli/gcli_banner.txt
 	echo "rm /usr/bin/generic-cli && mv ./generic-cli.sh /usr/bin/generic-cli && chmod +x /usr/bin/generic-cli && rm /tmp/tmp.sh" > /tmp/tmp.sh
 	sudo chmod +x /tmp/tmp.sh
 	sudo /tmp/tmp.sh
@@ -163,6 +166,8 @@ help(){
 	printf "   -d   Delete the makefile or cmake of the current directory\n"
 	printf "   -u   Updates this scripts and the current directory's makefile or cmake\n        (if there is one)\n"
 }
+
+cat ~/gcli/gcli_banner.txt
 
 while getopts ":c:hud" opt; do
 	case $opt in
