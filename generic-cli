@@ -84,7 +84,6 @@ update_cli(){
 	printf "updating cli.\n"
 	git clone https://github.com/riera90/generic-cli.git
 	mv ./generic-cli/generic-cli ./generic-cli.sh
-	rm -rf ./generic-cli
 	rm ~/.gcli/gcli_banner.txt
 	mkdir ~/.gcli
 	mv ./gcli_banner.txt ~/.gcli/gcli_banner.txt
