@@ -129,7 +129,7 @@ update(){
 
 delete(){
 	if [ -f Makefile ]; then
-		printf "Are you sure you want to delete the generic-makefile and it's configuration?\n"
+		printf "Are you sure you want to delete the generic-makefile and all the configuration?\n"
 		read -p "    [Y/N]: " answer
 		case $answer in
 			[yY]*)
@@ -142,7 +142,7 @@ delete(){
 		esac
 
 	elif [ -f cmake ]; then
-		printf "Are you sure you want to delete the generic-cmake and it's configuration?\n"
+		printf "Are you sure you want to delete the generic-cmake and all the configuration?\n"
 		read -p "    [Y/N]: " answer
 		case $answer in
 			[yY]*)
