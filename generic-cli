@@ -38,7 +38,7 @@ create_makefile(){
 		printf "creating makefile.\n"
 		git clone https://github.com/riera90/generic-makefile.git
 		mv ./generic-makefile/*.md ./generic-makefile/make-files/
-		rm -rf ./generic-makefile/.git ./generic-makefile/example ./generic-makefile/gtests
+		rm -rf ./generic-makefile/.git ./generic-makefile/example
 		if [ -f ./../.gitignore ]; then
 			cat ./generic-makefile/.gitignore >> ./.gitignore
 			rm ./generic-makefile/gitignore
