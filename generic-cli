@@ -67,7 +67,7 @@ update_makefile(){
 			fi
 			mv ./Makefile ./Makefile.old
 			mv ./generic-makefile/Makefile ./Makefile
-			rm -rf generic-makefile
+			rm -rf ./generic-makefile
 			if [ -d make-files/googletest ]; then
 				rm -rf ./make-files/googletest
 				git clone https://github.com/google/googletest.git
