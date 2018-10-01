@@ -12,7 +12,7 @@ add execution permission to install.sh
 
 execute install.sh  
 
-	./isntall.sh
+	./install.sh
 
 # usage
 generic-cli  
