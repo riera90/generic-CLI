@@ -78,6 +78,7 @@ update_makefile(){
 		*)
 			;;
 	esac
+	rm -rf ./generic-makefile
 }
 
 update_cli(){
