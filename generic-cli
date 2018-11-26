@@ -57,17 +57,20 @@ delete_makefile(){
 
 update_makefile(){
 	git clone https://github.com/riera90/generic-makefile.git
-	mv ./generic-makefile/make-files/Makefile ./make-files/Makefile
+	rm -rf ./make-files
+	mv ./generic-makefile/*.md ./generic-makefile/make-files/
+	rm -rf ./generic-makefile/.git ./generic-makefile/example
+	mv ./generic-makefile/make-files ./make-files
+	
 	printf "do you want to update the configuration file?\nthe previous configuration will be stored in Makefile.old\n"
 	read -p "    [Y/N]: " answer
 	case $answer in
 		[yY]*)
 			if [ -f Makefile.old ]; then
-				rm Makefile.old
+				rm -f Makefile.old
 			fi
 			mv ./Makefile ./Makefile.old
 			mv ./generic-makefile/Makefile ./Makefile
-			rm -rf ./generic-makefile
 			if [ -d make-files/googletest ]; then
 				rm -rf ./make-files/googletest
 				git clone https://github.com/google/googletest.git
