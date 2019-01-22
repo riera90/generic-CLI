@@ -62,7 +62,7 @@ update_makefile(){
 		echo "detected googletest, mooving files to /tmp"
 		rm -rf /tmp/gmf
 		mkdir -p /tmp/gmf
-		mv ./make-files/googletest /tmp/gmf/googletest
+		mv ./make-files/googletest /tmp/gmf
 	fi
 	git clone https://github.com/riera90/generic-makefile.git
 	rm -rf ./make-files
@@ -73,7 +73,7 @@ update_makefile(){
 	mv ./generic-makefile/make-files ./make-files
 	if [ -f /tmp/gmf/googletest/README.md ]; then
 		echo "mooving back googletest and deleting files in /tmp"
-		mv /tmp/gmf/googletest ./make-files/goolgetest
+		mv /tmp/gmf/googletest ./make-files
 		rmdir /tmp/gmf
 	fi
 	printf "do you want to update the configuration file?\nthe previous configuration will be stored in Makefile.old\n"
