@@ -71,7 +71,7 @@ update_makefile(){
 	rm -rf ./generic-makefile/.github
 	rm -rf ./generic-makefile/example
 	mv ./generic-makefile/make-files ./make-files
-	if [ -d /tmp/gmf/googletest/README.md ]; then
+	if [ -f /tmp/gmf/googletest/README.md ]; then
 		echo "mooving back googletest and deleting files in /tmp"
 		mv /tmp/gmf/googletest ./make-files/goolgetest
 		rmdir /tmp/gmf
