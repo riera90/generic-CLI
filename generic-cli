@@ -65,7 +65,7 @@ update_makefile(){
 		mv ./make-files/googletest /tmp/gmf/googletest
 	fi
 	git clone https://github.com/riera90/generic-makefile.git
-	rm -rf ./make-files
+	rm -rf ./make-files/*
 	mv ./generic-makefile/*.md ./generic-makefile/make-files/
 	rm -rf ./generic-makefile/.git
 	rm -rf ./generic-makefile/.github
