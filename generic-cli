@@ -61,6 +61,7 @@ update_makefile(){
 	mkdir -p /tmp/gmf
 	if [ -f ./make-files/googletest/README.md ]; then
 		echo "detected googletest, mooving files to /tmp"
+		rm -rf /tmp/gmf
 		mkdir -p /tmp/gmf
 		mv ./make-files/googletest /tmp/gmf/googletest
 	fi
