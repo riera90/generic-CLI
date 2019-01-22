@@ -20,6 +20,8 @@ generic-cli
 -d Delete the makefile or cmake of the current directory  
 -u Updates this scripts and the current directory's makefile or cmake (if there is one)
 
+![gcli usage](./gcli.gif)
+
 # FAQ!
 
 ### Q: I have seen ```generic-cli -c gmf``` in the generic-makefile readme. What does that mean?
